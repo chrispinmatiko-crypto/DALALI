@@ -1,94 +1,102 @@
 import { Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router, Href } from "expo-router";
+import { OrcaLogo } from "@/components/auth/OrcaLogo";
+import { GoogleIcon } from "@/components/auth/GoogleIcon";
+import { LockIcon } from "@/components/auth/LockIcon";
+import { Checkbox } from "@/components/auth/Checkbox";
 
-function OrcaLogo() {
+export default function WelcomeScreen() {
   return (
-    <View className="w-32 h-32 rounded-full bg-[#004B32] items-center justify-center">
-      <Text className="text-white text-6xl font-bold lowercase">d</Text>
-    </View>
-  );
-}
+    <View className="flex-1 bg-[#F5F5F5]">
+      <SafeAreaView className="flex-1">
+        {/* Contact us - top right */}
+        <View className="flex-row justify-end px-6 pt-2">
+          <TouchableOpacity>
+            <Text className="text-sm font-medium text-[#1A5632]">Contact us</Text>
+          </TouchableOpacity>
+        </View>
 
-function GoogleIcon() {
-  return (
-    <View className="w-5 h-5 mr-3">
-      <Text className="text-base font-bold">
-        <Text className="text-[#4285F4]">G</Text>
-      </Text>
-    </View>
-  );
-}
+        {/* Spacer */}
+        <View className="flex-1" />
 
-function PadlockIcon() {
-  return (
-    <View className="w-5 h-5 mr-3 items-center justify-center">
-      <Text className="text-white text-sm">🔒</Text>
-    </View>
-  );
-}
+        {/* Logo + Brand */}
+        <View className="items-center">
+          <OrcaLogo />
+          <Text className="text-[#1A5632] text-[38px] font-bold lowercase mt-3 tracking-tight">
+            dalali
+          </Text>
+        </View>
 
-function CheckmarkCircle() {
-  return (
-    <View className="w-4 h-4 rounded-full border border-gray-400 items-center justify-center shrink-0 mt-0.5">
-      <Text className="text-[8px] text-gray-400">✓</Text>
-    </View>
-  );
-}
+        {/* Spacer */}
+        <View className="flex-1" />
 
-export default function Index() {
-  return (
-    <View className="flex-1 bg-[#F8F9FA]">
-      {/* Contact us - top right */}
-      <View className="flex-row justify-end pt-14 pr-6">
-        <TouchableOpacity>
-          <Text className="text-sm text-gray-500 font-medium">Contact us</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Center: Logo + Brand */}
-      <View className="flex-1 items-center justify-center -mt-20">
-        <OrcaLogo />
-        <Text className="text-[#004B32] text-3xl font-bold lowercase mt-4 tracking-tight">
-          dalali
-        </Text>
-      </View>
-
-      {/* Bottom: Buttons + Legal */}
-      <View className="px-8 pb-12">
-        <View className="gap-4 mb-8">
-          {/* Google */}
-          <TouchableOpacity className="flex-row items-center justify-center bg-white rounded-full py-4 shadow-sm border border-gray-100">
+        {/* Buttons */}
+        <View className="px-8 gap-4">
+          {/* Continue with Google */}
+          <TouchableOpacity
+            className="flex-row items-center justify-center bg-[#1A5632] h-[54px] rounded-[18px]"
+            style={{
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.12,
+              shadowRadius: 10,
+              elevation: 5,
+            }}
+          >
             <GoogleIcon />
-            <Text className="text-[15px] font-medium text-gray-800">
+            <Text className="text-[16px] font-medium text-white">
               Continue with Google
             </Text>
           </TouchableOpacity>
 
-          {/* Password */}
-          <TouchableOpacity className="flex-row items-center justify-center bg-[#004B32] rounded-full py-4 shadow-sm">
-            <PadlockIcon />
-            <Text className="text-[15px] font-medium text-white">
+          {/* Continue with Password */}
+          <TouchableOpacity
+            onPress={() => router.push("/login" as Href)}
+            className="flex-row items-center justify-center bg-[#1A5632] h-[54px] rounded-[18px]"
+            style={{
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.12,
+              shadowRadius: 10,
+              elevation: 5,
+            }}
+          >
+            <LockIcon />
+            <Text className="text-[16px] font-medium text-white">
               Continue with Password
             </Text>
           </TouchableOpacity>
 
           {/* Sign up */}
-          <TouchableOpacity className="items-center justify-center py-3">
-            <Text className="text-[15px] font-medium text-[#004B32]">
-              Sign up
-            </Text>
+          <TouchableOpacity
+            onPress={() => router.push("/signup" as Href)}
+            className="flex-row items-center justify-center bg-[#1A5632] h-[54px] rounded-[18px]"
+            style={{
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.12,
+              shadowRadius: 10,
+              elevation: 5,
+            }}
+          >
+            <Text className="text-[16px] font-medium text-white">Sign up</Text>
           </TouchableOpacity>
         </View>
 
         {/* Legal */}
-        <View className="flex-row items-start gap-2 px-1">
-          <CheckmarkCircle />
-          <Text className="text-[11px] text-gray-400 leading-5 flex-1">
-            I confirm that I have read and agree to Dalali's{" "}
-            <Text className="text-gray-600 font-medium">Terms of Use</Text> and{" "}
-            <Text className="text-gray-600 font-medium">Privacy Policy</Text>.
-          </Text>
+        <View className="px-10 mt-6 mb-6">
+          <View className="flex-row items-start gap-2.5">
+            <Checkbox checked />
+            <Text className="text-[13px] text-[#333333] leading-5 flex-1 text-center">
+              I confirm that I have read and agree to Dalali's{" "}
+              <Text className="text-[#1A5632] font-semibold">Terms of Use</Text>{" "}
+              and{" "}
+              <Text className="text-[#1A5632] font-semibold">Privacy Policy</Text>.
+            </Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     </View>
   );
 }

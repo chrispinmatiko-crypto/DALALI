@@ -26,6 +26,14 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "ndkVersion": "28.2.13676358"
+          }
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -36,7 +44,7 @@
         }
       ],
       [
-        "@sentry/react-native/expo",
+        "@sentry/react-native/plugin",
         {
           "organization": "dalali",
           "project": "dalali-react-native-project"
